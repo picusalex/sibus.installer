@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 echo "#########################################################"
 echo "Installation script for sibus framework"
 echo "#########################################################"
@@ -10,14 +9,15 @@ INSTALL_DIR="$( dirname "$INSTALL_SCRIPT" )"
 
 
 if [ "$(whoami)" != "root" ]; then
-	echo "Sorry, you are not root."
-	exit 1
+        echo "Sorry, you are not root."
+        exit 1
 fi
 
 echo " + Installing various useful packages"
 sudo apt-get -y install python
 sudo apt-get -y install git
 sudo apt-get -y install jq
+sudo apt-get -y install samba
 echo " + done"
 
 echo " + Installing supervisor service"
@@ -30,11 +30,12 @@ echo " + done. Now add config files in /etc/supervisor/conf.d/*.conf"
 echo " + Github repositories:"
 curl "https://api.github.com/users/picusalex/repos?per_page=100" | jq '.[] | .clone_url'
 
+echo " + Manage supervisor services from: http://0.0.0.0:9001"
 
 exit 0
 
 #LINE=''
 #FILE=lighttpd.conf
-#grep -qF -- "$LINE" "$FILE" 
+#grep -qF -- "$LINE" "$FILE"
 
 #|| echo "$LINE" >> "$FILE"
