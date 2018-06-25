@@ -22,7 +22,7 @@ echo " + done"
 
 echo " + Installing supervisor service"
 sudo apt-get install supervisor
-sudo cp -uv $INSTALL_DIR/supervisord.conf /etc/supervisor/supervisord.conf
+sudo cp -v $INSTALL_DIR/supervisord.conf /etc/supervisor/supervisord.conf
 sudo service supervisor restart
 sudo service supervisor status
 echo " + done. Now add config files in /etc/supervisor/conf.d/*.conf"
